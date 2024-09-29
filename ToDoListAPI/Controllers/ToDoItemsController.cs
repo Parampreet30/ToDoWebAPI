@@ -25,8 +25,9 @@ namespace ToDoListAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ToDoItem>>> GetToDoItems()
         {
-            return await _context.ToDoItems.ToListAsync();
+            return await _context.ToDoItems.Where(item => item.CompletedDate == null || item.CompletedDate == "").ToListAsync();
         }
+
 
         // GET: api/ToDoItems/5
         [HttpGet("{id}")]
